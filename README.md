@@ -22,9 +22,11 @@ To run the docker-compose image, be sure that you have Docker and Docker-Compose
 `` docker-compose -v ``
 
 
-After ensuring you have Docker installed, run :
+After ensuring you have Docker installed, run the 'run.sh' script:
 
-`` docker-compose ./deploy/docker-compose.yaml up ``
+This scripts only tell gradlew to build the docker image from the SpringBootApplication and run a Docker-Compose image
+
+`` sh run.sh ``
 
 # Endpoints
 
