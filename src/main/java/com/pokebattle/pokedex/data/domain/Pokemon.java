@@ -40,14 +40,15 @@ public class Pokemon {
 
     @ManyToMany
     @JoinTable(name = "evolutions",
-                joinColumns = @JoinColumn(name = "pokemon_id"),
-                inverseJoinColumns = @JoinColumn(name = "evolves_to"))
+            joinColumns = @JoinColumn(name = "pokemon_id"),
+            inverseJoinColumns = @JoinColumn(name = "evolves_to"))
     private Set<Pokemon> evolvesTo;
 
     @ElementCollection
+    @Column(name = "type")
     @CollectionTable(name = "pokemon_types",
-    joinColumns = @JoinColumn(name = "pokemon_id"))
+            joinColumns = @JoinColumn(name = "pokemon_id"))
     @Enumerated(EnumType.STRING)
-    private Set<PokemonTypeEnum> type;
+    private Set<PokemonTypeEnum> types;
 
 }

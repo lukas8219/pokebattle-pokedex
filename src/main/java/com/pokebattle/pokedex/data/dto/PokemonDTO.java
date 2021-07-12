@@ -1,5 +1,6 @@
 package com.pokebattle.pokedex.data.dto;
 
+import com.pokebattle.pokedex.data.enumeration.PokemonTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +21,6 @@ public class PokemonDTO {
     private String frontSprite;
     private String backSprite;
     private List<PokemonEvolutionDTO> evolutions;
+    private List<PokemonTypeEnum> types;
 
 }
