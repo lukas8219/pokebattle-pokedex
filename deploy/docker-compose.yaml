@@ -1,0 +1,19 @@
+version: '3.4'
+services:
+    pokedex:
+        image: pokebattle/pokedex
+        container_name: pokedex
+        ports:
+            - 8080:8080
+        environment:
+            - spring.datasource.url=jdbc:mysql://db:3306/pokedex
+            - spring.datasource.username=root
+            - spring.datasource.password=123455678@
+        depends_on:
+            - db
+    db:
+        image: mysql
+        container_name: database
+        environment:
+            - MYSQL_ROOT_PASSWORD=123455678@
+            - MYSQL_DATABASE=pokedex
