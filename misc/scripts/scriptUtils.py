@@ -1,6 +1,7 @@
 import re
 import requests
 import base64
+import os
 
 def getIdFromUrl(url):
     id = re.search('([\/]{1}[\d]+[\/]{0,1})', url)[0].replace("/", '')
@@ -154,6 +155,8 @@ def getSpringToBase64(spriteUrl):
         f = f.read()
 
         encoded = base64.encodebytes(f)
+
+        os.remove("image.png")
 
         return "\"{}\"".format(encoded.decode("ascii").replace('\n', ''))
     
