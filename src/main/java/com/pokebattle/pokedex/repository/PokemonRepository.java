@@ -39,8 +39,8 @@ public class PokemonRepository {
         );
 
         var paginationParameters = parametersDTO.getParameters();
-        paginationParameters.forEach(param-> {
-            if(param != null){
+        paginationParameters.forEach(param -> {
+            if (param != null) {
                 var namePath = from.get(Pokemon_.NAME);
                 var parameter = String.format("%s%%", param);
                 var predicate = cb.like(namePath.as(String.class), parameter);
@@ -49,12 +49,12 @@ public class PokemonRepository {
         });
 
         var sortBy = parametersDTO.getSortBy();
-        if(containsField(sortBy)){
+        if (containsField(sortBy)) {
             query.orderBy(List.of(cb.asc(from.get(sortBy))));
         }
 
         var size = parametersDTO.getPageSize();
-        var firstResult = parametersDTO.getPageNumber()* size;
+        var firstResult = parametersDTO.getPageNumber() * size;
 
         return entityManager.createQuery(query)
                 .setMaxResults(size)

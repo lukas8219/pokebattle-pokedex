@@ -3,11 +3,13 @@ package com.pokebattle.pokedex.data.dto;
 import com.pokebattle.pokedex.data.enumeration.PokemonTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class PokemonDTO {
 
     private Long id;
