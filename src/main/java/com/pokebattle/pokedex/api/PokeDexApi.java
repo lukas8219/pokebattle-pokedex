@@ -24,6 +24,11 @@ public class PokeDexApi {
                                  @Max(value = 898, message = "{pokedex.range}")
                                  @Min(value = 1, message = "{pokedex.range}")
                                          Long id) {
+
+
+
+
+
         return service.getPokemon(id);
     }
 
