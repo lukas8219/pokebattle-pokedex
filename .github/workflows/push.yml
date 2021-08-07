@@ -25,7 +25,8 @@ jobs:
         run: ./gradlew build jib -x test
 
       - name: Deploy
-        run: source gradle.properties |
+        run: |
+        source gradle.properties |
         echo $version |
         sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
 
