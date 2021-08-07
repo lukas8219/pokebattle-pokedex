@@ -19,7 +19,7 @@ import javax.validation.constraints.Min;
 @RequestMapping("/v1/pokedex/")
 @RequiredArgsConstructor
 @Validated
-public final class PokeDexApi {
+public class PokeDexApi {
 
     private final PokeDexService service;
     private final int MAX_POKEDEX_SIZE = 898;
