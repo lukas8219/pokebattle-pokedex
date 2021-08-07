@@ -29,7 +29,10 @@ jobs:
           tag_with_sha: true
 
       - name: Build Docker Image
-        run: docker build -t $REPO_ID/${{ steps.generate_tag.outputs.tag }} -t $REPO_ID/${{ steps.generate_tag.outputs.tag }}
+        run: docker build -t ${REPO_ID}/${{ steps.generate_tag.outputs.tag }} -t $REPO_ID/${{ steps.generate_tag.outputs.tag }}
+
+      - name: Print Repo Id
+        run: echo $REPO_ID
 
       - name: Push Docker Imagem
         run: docker push $REPO_ID/${{ steps.generate_tag.outputs.tag }}
