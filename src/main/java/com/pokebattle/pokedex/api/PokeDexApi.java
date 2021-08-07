@@ -15,23 +15,25 @@ import javax.validation.constraints.Min;
 @RequestMapping("/v1/pokedex/")
 @RequiredArgsConstructor
 @Validated
-public class PokeDexApi {
+public final class PokeDexApi {
 
     private final PokeDexService service;
+    private final int MAX_POKEDEX_SIZE = 898;
+    private final int MIN_POKEDEX_SIZE = 1;
 
     @GetMapping("{id}")
     public PokemonDTO getPokemon(@PathVariable
-                                 @Max(value = 898, message = "{pokedex.range}")
-                                 @Min(value = 1, message = "{pokedex.range}")
-                                         Long id) {
+                                 @Max(value = MAX_POKEDEX_SIZE, message = "{pokedex.range}")
+                                 @Min(value = MIN_POKEDEX_SIZE, message = "{pokedex.range}")
+                                         final Long id) {
         return service.getPokemon(id);
     }
 
     @GetMapping
-    public PaginationResultDTO<PokemonSearchDTO> getPokemonList(@RequestParam(required = false) Integer pageNumber,
-                                                                @RequestParam(required = false) Integer pageSize,
-                                                                @RequestParam(required = false) String sortBy,
-                                                                @RequestParam(required = false) String name) {
+    public PaginationResultDTO<PokemonSearchDTO> getPokemonList(@RequestParam(required = false) final Integer pageNumber,
+                                                                @RequestParam(required = false) final Integer pageSize,
+                                                                @RequestParam(required = false) final String sortBy,
+                                                                @RequestParam(required = false) final String name) {
 
 
 
