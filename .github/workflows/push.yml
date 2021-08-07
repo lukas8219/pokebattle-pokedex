@@ -25,10 +25,7 @@ jobs:
         run: ./gradlew build jib -x test
 
       - name: Get Image Version
-        run: source gradle.properties
-
-      - name: Print Version
-        run: echo $version
-
-      - name: Change Deploy YML
-        run: sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
+        run: |
+        source gradle.properties
+        echo $version
+        sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
