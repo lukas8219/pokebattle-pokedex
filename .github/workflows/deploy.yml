@@ -15,12 +15,12 @@ jobs:
         with:
           fetch-depth: 0
 
-#      - name: Lint Code Base
-#        uses: github/super-linter@v4
-#        env:
-#          VALIDATE_ALL_CODEBASE: false
-#          DEFAULT_BRANCH: master
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Login into Dockerhub
 #        uses: docker/login-action@v1
@@ -36,6 +36,7 @@ jobs:
         uses: Surgo/docker-smart-tag-action@v1
         with:
           docker_image: name/app
+          default_branch: ${{ github.event.repository.default_branch }}
           tag_with_sha: true
 
       - name: Printing Tag
