@@ -10,17 +10,17 @@ jobs:
   Checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository Code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+ #     - name: Checkout Repository Code
+ #       uses: actions/checkout@v2
+ #       with:
+ #         fetch-depth: 0
 
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Lint Code Base
+#        uses: github/super-linter@v4
+#        env:
+#          VALIDATE_ALL_CODEBASE: false
+#          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Login into Dockerhub
 #        uses: docker/login-action@v1
@@ -35,7 +35,7 @@ jobs:
         id: generate_tag
         uses: Surgo/docker-smart-tag-action@v1
         with:
-          docker_image: ${{ github.event.repo.name }}
+          docker_image: ${{ github.event.repository.name }}
           default_branch: ${{ github.event.repository.default_branch }}
           tag_with_sha: true
 
