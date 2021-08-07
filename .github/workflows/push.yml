@@ -29,3 +29,16 @@ jobs:
           source gradle.properties
           echo ${version}
           sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
+
+      - name: Install DigitalOcean CLI
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Deploy All
+        run: |
+          doctl kubernetes cluster kubeconfig save --expiry-seconds 600 <cluster-name>
+          kubectl apply -f ./deploy/configmap.yml
+          kubectl apply -f ./deploy/ingress.yml
+          kubectl apply -f ./deploy/mysql-deploy.yml
+          kubectl apply -f ./deploy/deployment.yaml
