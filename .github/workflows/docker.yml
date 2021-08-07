@@ -7,7 +7,7 @@ jobs:
   Checkout:
     runs-on: ubuntu-latest
     env:
-      REPO: ${{ github.event.repository.name }}
+      REPO_ID: 'lukas8219'
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v2
@@ -29,8 +29,8 @@ jobs:
           tag_with_sha: true
 
       - name: Build Docker Image
-        run: docker build -t lukas8219/${{ steps.generate_tag.outputs.tag }} -t lukas8219/${{ steps.generate_tag.outputs.tag }}
+        run: docker build -t $REPO_ID/${{ steps.generate_tag.outputs.tag }} -t $REPO_ID/${{ steps.generate_tag.outputs.tag }}
 
       - name: Push Docker Imagem
-        run: docker push lukas8219/${{ steps.generate_tag.outputs.tag }}
+        run: docker push $REPO_ID/${{ steps.generate_tag.outputs.tag }}
 
