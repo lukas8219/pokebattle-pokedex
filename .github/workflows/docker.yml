@@ -24,7 +24,7 @@ jobs:
         id: generate_tag
         uses: Surgo/docker-smart-tag-action@v1
         with:
-          docker_image: $REPO
+          docker_image: ${{ github.event.repository.name }}
           default_branch: ${{ github.event.repository.default_branch }}
           tag_with_sha: true
 
