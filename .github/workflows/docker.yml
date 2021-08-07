@@ -20,11 +20,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Decrypt Secret
+        run: ./.github/scripts/decrypt_secret.sh
+
       - name: Print Repo Name
         run: echo $REPO
-
-      - name: Print Username
-        run: echo ${{ secrets.DOCKERHUB_USERNAME }}
 
       - name: Build Docker Image
         run: docker build -t $REPO:latest -t $REPO:${GITHUB_TOKEN_ID}
