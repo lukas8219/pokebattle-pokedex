@@ -32,6 +32,9 @@ public class PokeDexApi {
                                                                 @RequestParam(required = false) Integer pageSize,
                                                                 @RequestParam(required = false) String sortBy,
                                                                 @RequestParam(required = false) String name) {
+
+
+
         return service.getPokemonList(pageNumber, pageSize, sortBy, name);
     }
 }
