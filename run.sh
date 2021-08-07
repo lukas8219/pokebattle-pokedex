@@ -1,5 +1,4 @@
 #!/bin/bash
-
-./gradlew bootBuildImage --imageName=pokebattle/pokedex
-
-docker-compose -f ./deploy/docker-compose.yaml up
+source gradle.properties
+echo $version
+sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
