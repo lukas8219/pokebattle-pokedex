@@ -24,7 +24,7 @@ jobs:
           docker_pass: ${{ secrets.DOCKERHUB_TOKEN }}
         run: ./gradlew build jib -x test
 
-      - name: Get Image Version
+      - name: Set-up Deployment Version
         run: |
           source gradle.properties
           echo ${version}
