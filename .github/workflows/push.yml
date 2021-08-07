@@ -38,6 +38,7 @@ jobs:
       - name: Deploy All
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 pokebattle-staging-cluster
+          kubectl apply -f ./deploy/namespace.yml
           kubectl apply -f ./deploy/configmap.yml
           kubectl apply -f ./deploy/ingress.yml
           kubectl apply -f ./deploy/mysql-deploy.yml
