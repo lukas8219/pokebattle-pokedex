@@ -7,7 +7,7 @@ jobs:
   Checkout:
     runs-on: ubuntu-latest
     env:
-      REPO: ${{ secrets.DOCKERHUB_REPO }}
+      REPO: ${{ github.event.repository.name }}
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v2
@@ -20,15 +20,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Decrypt Secret
-        run: ./.github/scripts/decrypt_secret.sh
-
-      - name: Print Repo Name
-        run: echo $REPO
+      - name: Generate Tag
+        id: generate_tag
+        uses: Surgo/docker-smart-tag-action@v1
+        with:
+          docker_image: $REPO
+          default_branch: ${{ github.event.repository.default_branch }}
+          tag_with_sha: true
 
       - name: Build Docker Image
-        run: docker build -t $REPO:latest -t $REPO:${GITHUB_TOKEN_ID}
+        run: docker build -t lukas8219/$REPO:${{ steps.generate_tag.outputs.tag }} -t lukas8219/$REPO:${GITHUB_TOKEN_ID}
 
       - name: Push Docker Imagem
-        run: docker push $REPO
+        run: docker push lukas8219/$REPO
 
