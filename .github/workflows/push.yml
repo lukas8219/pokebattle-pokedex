@@ -27,5 +27,5 @@ jobs:
       - name: Get Image Version
         run: |
         source gradle.properties
-        echo $version
+        echo ${version}
         sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
