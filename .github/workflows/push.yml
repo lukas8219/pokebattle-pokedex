@@ -28,5 +28,5 @@ jobs:
         run: |
         source gradle.properties |
         echo $version |
-        sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
+        sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml |
 
