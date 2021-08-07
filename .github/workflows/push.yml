@@ -24,9 +24,11 @@ jobs:
           docker_pass: ${{ secrets.DOCKERHUB_TOKEN }}
         run: ./gradlew build jib -x test
 
-      - name: Deploy
-        run: |
-        source gradle.properties |
-        echo $version |
-        sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml |
+      - name: Get Image Version
+        run: source gradle.properties
 
+      - name: Print Version
+        run: echo $version
+
+      - name: Change Deploy YML
+        run: sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
