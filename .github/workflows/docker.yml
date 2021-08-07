@@ -29,8 +29,8 @@ jobs:
           tag_with_sha: true
 
       - name: Build Docker Image
-        run: docker build -t lukas8219/$REPO:${{ steps.generate_tag.outputs.tag }} -t lukas8219/$REPO:${GITHUB_TOKEN_ID}
+        run: docker build -t lukas8219/${{ steps.generate_tag.outputs.tag }} -t lukas8219/${{ steps.generate_tag.outputs.tag }}
 
       - name: Push Docker Imagem
-        run: docker push lukas8219/$REPO
+        run: docker push lukas8219/${{ steps.generate_tag.outputs.tag }}
 
