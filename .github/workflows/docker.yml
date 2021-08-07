@@ -7,7 +7,7 @@ jobs:
   Checkout:
     runs-on: ubuntu-latest
     env:
-      - REPO: ${{ secrets.DOCKERHUB_REPO }}
+      REPO: ${{ secrets.DOCKERHUB_REPO }}
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v2
