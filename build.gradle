@@ -12,8 +12,10 @@ jib {
 	from {
 		image = 'openjdk:11'
 		auth {
-			username = System.getenv("docker_user").toString()
-			password = System.getenv("docker_pass").toString()
+			//username = System.getenv("docker_user").toString()
+			//password = System.getenv("docker_pass").toString()
+			username = "lukas8219"
+			password = "luc@S99laura94luiz57"
 		}
 	}
 
