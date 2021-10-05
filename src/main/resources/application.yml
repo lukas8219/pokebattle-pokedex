@@ -11,6 +11,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  devtools:
+    restart:
+      enabled: true
 
 management:
   endpoints:
