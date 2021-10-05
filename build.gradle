@@ -69,3 +69,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+task restart {
+	dependsOn(classes)
+}
