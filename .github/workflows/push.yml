@@ -20,6 +20,7 @@ jobs:
 
       - name: Publish Java Image
         env:
+          BUILD_NUMBER: ${{ github.run_number }}
           docker_user: ${{ secrets.DOCKERHUB_USERNAME }}
           docker_pass: ${{ secrets.DOCKERHUB_TOKEN }}
         run: ./gradlew build jib -x test
@@ -27,7 +28,7 @@ jobs:
       - name: Set-up Deployment Version
         run: |
           source gradle.properties
-          echo ${version}
+          version="${version}-${{ github.run_number }}"
           sed -ie "s/{{VERSION}}/$version/g" ./deploy/deployment.yaml
 
       - name: Install DigitalOcean CLI
@@ -41,5 +42,4 @@ jobs:
           kubectl apply -f ./deploy/namespace.yml
           kubectl apply -f ./deploy/configmap.yml
           kubectl apply -f ./deploy/ingress.yml
-          kubectl apply -f ./deploy/mysql-deploy.yml
           kubectl apply -f ./deploy/deployment.yaml
