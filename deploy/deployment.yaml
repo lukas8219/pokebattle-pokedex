@@ -30,7 +30,7 @@ spec:
            - containerPort: 8080
           volumeMounts:
             - name: log-data-volume
-              mountPath: app/log/
+              mountPath: /log/
       volumes:
         - name: log-data-volume
           persistentVolumeClaim:
