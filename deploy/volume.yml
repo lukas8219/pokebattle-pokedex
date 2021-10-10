@@ -28,4 +28,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/logs/"
+    path: "/log/"

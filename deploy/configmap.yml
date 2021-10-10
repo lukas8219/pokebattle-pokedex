@@ -7,3 +7,4 @@ data:
   SPRING_DATASOURCE_URL: jdbc:mysql://pokebattle-db.database.svc.cluster.local:3306/pokedex
   SPRING_DATASOURCE_USERNAME: root
   SPRING_DATASOURCE_PASSWORD: 123455678@
+  logging_file_name: /app/log/${POD_NAME}.log
