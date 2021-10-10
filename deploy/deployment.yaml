@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: pokedex-be
-          image: docker.io/lukas8219/pokebattle-pokedex:0.0.5-30
+          image: docker.io/lukas8219/pokebattle-pokedex:{{VERSION}}
           env:
             - name: POD_NAME
               valueFrom:
