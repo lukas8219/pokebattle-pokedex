@@ -21,6 +21,10 @@ management:
       exposure:
         include: "*"
 
+logging:
+  file:
+    name: "app/log/${POD_NAME:monitoring}.log"
+
 #flyway:
 #  user: 'root'
 #  password: '12345678@'
