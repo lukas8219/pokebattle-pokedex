@@ -22,7 +22,7 @@ spec:
             - name: POD_NAME
               valueFrom:
                 fieldRef:
-                  fieldPath: spec.nodeName
+                  fieldPath: metadata.name
           envFrom:
             - configMapRef:
                 name: pokebattle-config
