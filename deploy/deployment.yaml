@@ -17,7 +17,12 @@ spec:
     spec:
       containers:
         - name: pokedex-be
-          image: docker.io/lukas8219/pokebattle-pokedex:{{VERSION}}
+          image: docker.io/lukas8219/pokebattle-pokedex:0.0.5-30
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
           envFrom:
             - configMapRef:
                 name: pokebattle-config
@@ -25,7 +30,7 @@ spec:
            - containerPort: 8080
           volumeMounts:
             - name: log-data-volume
-              mountPath: /log/
+              mountPath: app/log/
       volumes:
         - name: log-data-volume
           persistentVolumeClaim:
