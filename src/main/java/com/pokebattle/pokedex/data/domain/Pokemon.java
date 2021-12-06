@@ -10,10 +10,11 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "pokemons")
+@Table(name = "POKEMONS")
 public class Pokemon {
 
     @Id
+    @Column(name = "id")
     private Long id;
     @Column(name = "name")
     private String name;
@@ -39,14 +40,14 @@ public class Pokemon {
     private String frontSprite;
 
     @ManyToMany
-    @JoinTable(name = "evolutions",
+    @JoinTable(name = "EVOLUTIONS",
             joinColumns = @JoinColumn(name = "pokemon_id"),
             inverseJoinColumns = @JoinColumn(name = "evolves_to"))
     private Set<Pokemon> evolvesTo;
 
     @ElementCollection
     @Column(name = "type")
-    @CollectionTable(name = "pokemon_types",
+    @CollectionTable(name = "POKEMON_TYPES",
             joinColumns = @JoinColumn(name = "pokemon_id"))
     @Enumerated(EnumType.STRING)
     private Set<PokemonTypeEnum> types;

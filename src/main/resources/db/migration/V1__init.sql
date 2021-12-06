@@ -1,4 +1,4 @@
-CREATE TABLE pokemons (
+CREATE TABLE POKEMONS (
                           id int PRIMARY KEY,
                           weight int,
                           height int,
@@ -13,7 +13,7 @@ CREATE TABLE pokemons (
                           back_sprite TEXT
 );
 
-CREATE TABLE evolutions (
+CREATE TABLE EVOLUTIONS (
     pokemon_id int,
     evolves_to int,
     FOREIGN KEY (pokemon_id) REFERENCES pokemons(id),
@@ -21,7 +21,7 @@ CREATE TABLE evolutions (
     PRIMARY KEY (pokemon_id, evolves_to)
 );
 
-CREATE TABLE pokemon_types (
+CREATE TABLE POKEMON_TYPES (
     pokemon_id int,
     type VARCHAR(50),
     FOREIGN KEY (pokemon_id) REFERENCES pokemons(id),
