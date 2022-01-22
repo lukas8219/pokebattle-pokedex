@@ -5,7 +5,7 @@ This projects mimics a PokeDex backed by PokeApi.co data.
 To run this image with docker use:
 
 ```bash
-docker run lukas8219/pokedex:latest
+docker run -p 8080:8080 lukas8219/pokedex:latest
 ```
 
 ### Technologies used:
