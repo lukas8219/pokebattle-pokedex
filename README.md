@@ -1,8 +1,12 @@
 # PokeBattle - PokeDex Project
 
-
-
 This projects mimics a PokeDex backed by PokeApi.co data.
+
+To run this image with docker use:
+
+```bash
+docker run lukas8219/pokedex:latest
+```
 
 ### Technologies used:
 - SpringBoot Web
@@ -14,7 +18,7 @@ This projects mimics a PokeDex backed by PokeApi.co data.
 - Hibernate/JPA
 - In Memory Database with H2 for faster queries.
 - Python Scripts to fetch PokeApi data
-- Docker
+- Google JIB for containerization and Github Actions
 
 # Endpoints
 
