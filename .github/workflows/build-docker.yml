@@ -20,5 +20,5 @@ jobs:
         env:
           BUILD_NUMBER: ${{ github.run_number }}
           docker_use: ${{ secrets.DOCKERHUB_USERNAME }}
-          docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: ./gradlew clean build jib -x test
+          docker_pass: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: ./gradlew build jib -x test
