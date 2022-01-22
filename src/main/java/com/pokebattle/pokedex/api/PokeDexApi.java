@@ -1,10 +1,13 @@
 package com.pokebattle.pokedex.api;
 
+import com.pokebattle.pokedex.data.domain.Pokemon;
 import com.pokebattle.pokedex.data.dto.PaginationResultDTO;
 import com.pokebattle.pokedex.data.dto.PokemonDTO;
 import com.pokebattle.pokedex.data.dto.PokemonSearchDTO;
 import com.pokebattle.pokedex.service.PokeDexService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import javax.validation.constraints.Min;
 @RequestMapping("/v1/pokedex/")
 @RequiredArgsConstructor
 @Validated
+@ExposesResourceFor(Pokemon.class)
 public class PokeDexApi {
 
     private final PokeDexService service;
@@ -26,7 +30,7 @@ public class PokeDexApi {
     private final int MIN_POKEDEX_SIZE = 1;
 
     @GetMapping("{id}")
-    public PokemonDTO getPokemon(@PathVariable
+    public EntityModel<PokemonDTO> getPokemon(@PathVariable
                                  @Max(value = MAX_POKEDEX_SIZE, message = "{pokedex.range}")
                                  @Min(value = MIN_POKEDEX_SIZE, message = "{pokedex.range}")
                                          final Long id) {

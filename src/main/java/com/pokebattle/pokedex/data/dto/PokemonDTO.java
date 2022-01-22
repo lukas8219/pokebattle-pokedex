@@ -4,6 +4,7 @@ import com.pokebattle.pokedex.data.enumeration.PokemonTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.hateoas.EntityModel;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class PokemonDTO {
     private Integer speed;
     private String frontSprite;
     private String backSprite;
-    private List<PokemonEvolutionDTO> evolutions;
+    private List<EntityModel<PokemonEvolutionDTO>> evolutions;
     private List<PokemonTypeEnum> types;
 
 }

@@ -7,6 +7,7 @@ import com.pokebattle.pokedex.decorator.PaginationDecorator;
 import com.pokebattle.pokedex.mapper.PokemonMapper;
 import com.pokebattle.pokedex.repository.PokemonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -20,10 +21,9 @@ public class PokeDexService {
     private final PaginationDecorator paginationDecorator;
     private final PokemonMapper pokemonMapper;
 
-    public PokemonDTO getPokemon(Long id) {
+    public EntityModel<PokemonDTO> getPokemon(Long id) {
         var pokemon = pokemonRepository.findById(id);
-        var dto = pokemonMapper.toDTO(pokemon);
-        return dto;
+        return pokemonMapper.toModel(pokemon);
     }
 
     public PaginationResultDTO<PokemonSearchDTO> getPokemonList(Integer pageNumber, Integer pageSize, String sortBy, String name) {

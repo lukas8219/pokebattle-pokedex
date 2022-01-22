@@ -53,6 +53,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 
+	implementation 'org.springframework.hateoas:spring-hateoas'
+
+
 
 	implementation "org.flywaydb:flyway-core:7.11.1"
 	implementation "org.mapstruct:mapstruct:1.4.2.Final"
