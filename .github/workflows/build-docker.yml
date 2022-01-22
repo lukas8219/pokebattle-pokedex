@@ -19,6 +19,6 @@ jobs:
       - name: Publish Java Image
         env:
           BUILD_NUMBER: ${{ github.run_number }}
-          docker_use: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker_user: ${{ secrets.DOCKERHUB_USERNAME }}
           docker_pass: ${{ secrets.DOCKERHUB_TOKEN }}
         run: ./gradlew build jib -x test
