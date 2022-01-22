@@ -16,7 +16,7 @@ docker run -p 8080:8080 lukas8219/pokedex:latest
 - Annotation-based Bean Validation
 - Flyway Migrations
 - Hibernate/JPA
-- In Memory Database with H2 for faster queries.
+- In Memory Database with H2 for faster responses.
 - Python Scripts to fetch PokeApi data
 - Google JIB for containerization and Github Actions
 
