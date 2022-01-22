@@ -8,28 +8,89 @@ This projects mimics a PokeDex backed by PokeApi.co data.
 - SpringBoot Web
 - Lombok 
 - MapStruct
-- Bean Validation
+- HATEOAS
+- Annotation-based Bean Validation
 - Flyway Migrations
 - Hibernate/JPA
-- MySQL
+- In Memory Database with H2 for faster queries.
 - Python Scripts to fetch PokeApi data
 - Docker
 
-
-To run the docker-compose image, be sure that you have Docker and Docker-Compose installed and all permissions set:
-
-`` docker -v `` 
-`` docker-compose -v ``
-
-
-After ensuring you have Docker installed, run the 'run.sh' script:
-
-This scripts only tell gradlew to build the docker image from the SpringBootApplication and run a Docker-Compose image
-
-`` sh run.sh ``
-
 # Endpoints
 
-**v1/pokedex/{id}** -> Returns PokeData, containing id, name, weight, height, stats, base64 encrypted sprites, evolutions and types.
-**v1/pokedex/?** -> Returns a pagination of Pokemon, containing ID and name. **Query parameters(name, pageNumber, pageSize and sortBy)**.
+**GET** -> **v1/pokedex/{id}** 
 
+Response:
+
+```javascript
+{
+    "id": number,
+    "name": string
+    "healthPoints": number,
+    "attack": number,
+    "defense": number,
+    "specialAttack": number,
+    "specialDefense": number,
+    "speed": numb,
+    "frontSprite": --base64 encoded sprite--,
+    "backSprite": --base64 encoded sprite--,
+    "evolutions": array of PokemonMinimal
+    "types": array of Type,
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/v1/pokedex/{id}"
+        }
+    }
+}
+```
+
+**GET** -> **v1/pokedex/?**
+
+Response:
+```javascript
+{
+    "data": array of PokemonMinimal,
+    "page": number,
+    "pageSize": number,
+    "sortedBy": string | accepted parameters = [any of Pokemon resource except Evolution, Types and Sprites]
+}
+```
+
+
+RESOURCES: 
+
+PokemonMinimal:
+```javascript
+{
+    "id": number,
+    "name": string,
+    "links": [
+    {
+      "rel": "self",
+      "href": "http://localhost:8080/v1/pokedex/{id}"
+    }
+  ]
+}
+```
+
+
+Types:
+
+    GRASS,
+    POISON,
+    FIRE,
+    FLYING,
+    WATER,
+    BUG,
+    NORMAL,
+    ELECTRIC,
+    GROUND,
+    FAIRY,
+    FIGHTING,
+    PSYCHIC,
+    ROCK,
+    STEEL,
+    ICE,
+    GHOST,
+    DRAGON,
+    DARK
