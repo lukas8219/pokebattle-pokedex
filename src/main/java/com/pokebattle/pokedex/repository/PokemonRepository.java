@@ -4,7 +4,9 @@ import com.pokebattle.pokedex.data.domain.Pokemon;
 import com.pokebattle.pokedex.data.domain.Pokemon_;
 import com.pokebattle.pokedex.data.dto.PokemonSearchDTO;
 import com.pokebattle.pokedex.data.dto.SearchParametersDTO;
+import com.pokebattle.pokedex.mapper.PokemonMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,6 +18,7 @@ import java.util.List;
 public class PokemonRepository {
 
     private final EntityManager entityManager;
+    private final PokemonMapper mapper;
 
     public Pokemon findById(Long id) {
         var criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -28,7 +31,7 @@ public class PokemonRepository {
         return entityManager.createQuery(query).getSingleResult();
     }
 
-    public List<PokemonSearchDTO> searchPokemonList(SearchParametersDTO parametersDTO) {
+    public List<EntityModel<PokemonSearchDTO>> searchPokemonList(SearchParametersDTO parametersDTO) {
         var cb = entityManager.getCriteriaBuilder();
         var query = cb.createQuery(PokemonSearchDTO.class);
         var from = query.from(Pokemon.class);
@@ -56,10 +59,12 @@ public class PokemonRepository {
         var size = parametersDTO.getPageSize();
         var firstResult = parametersDTO.getPageNumber() * size;
 
-        return entityManager.createQuery(query)
+        var pokemonList = entityManager.createQuery(query)
                 .setMaxResults(size)
                 .setFirstResult(firstResult)
                 .getResultList();
+
+        return mapper.toModel(pokemonList);
     }
 
     private boolean containsField(String field) {

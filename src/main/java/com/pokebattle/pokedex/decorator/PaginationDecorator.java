@@ -3,6 +3,7 @@ package com.pokebattle.pokedex.decorator;
 import com.pokebattle.pokedex.data.dto.PaginationResultDTO;
 import com.pokebattle.pokedex.data.dto.PokemonSearchDTO;
 import com.pokebattle.pokedex.data.dto.SearchParametersDTO;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -24,7 +25,7 @@ public class PaginationDecorator {
         return dto;
     }
 
-    public <T> PaginationResultDTO<T> toPaginationResult(SearchParametersDTO pagination, List<T> searchResult) {
+    public <T> PaginationResultDTO<T> toPaginationResult(SearchParametersDTO pagination, List<EntityModel<T>> searchResult) {
         PaginationResultDTO<T> result = new PaginationResultDTO<>();
         result.setData(searchResult);
         result.setPageSize(searchResult.size());

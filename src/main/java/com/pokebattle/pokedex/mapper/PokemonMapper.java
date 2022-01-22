@@ -3,6 +3,7 @@ package com.pokebattle.pokedex.mapper;
 import com.pokebattle.pokedex.data.domain.Pokemon;
 import com.pokebattle.pokedex.data.dto.PokemonDTO;
 import com.pokebattle.pokedex.data.dto.PokemonEvolutionDTO;
+import com.pokebattle.pokedex.data.dto.PokemonSearchDTO;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.EntityLinks;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
@@ -44,7 +46,14 @@ public abstract class PokemonMapper {
 
     private void addSelfRef(EntityModel<?> model, Number id){
         model.add(
-                entityLinks.linkToItemResource(Pokemon.class, id)
+                entityLinks.linkToItemResource(Pokemon.class, id).withSelfRel()
         );
+    }
+
+    public List<EntityModel<PokemonSearchDTO>> toModel(List<PokemonSearchDTO> pokemonList){
+        return pokemonList.stream()
+                .map(EntityModel::of)
+                .peek(pokemon -> addSelfRef(pokemon, pokemon.getContent().getId()))
+                .collect(Collectors.toList());
     }
 }
