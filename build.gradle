@@ -22,7 +22,7 @@ jib {
 	}
 
 	to {
-		image = "lukas8219/pokebattle-$artifact"
+		image = "lukas8219/$artifact"
 		tags = [ "latest" , "${version}-${buildNumber}".toString() ]
 	}
 }
